@@ -1,0 +1,83 @@
+.home-container{
+    height: 100vh;
+    width: 100%;
+    background-color: #ccc;
+    position: relative !important;
+
+    .country {
+        text-align: center;
+        padding: 0 !important;
+        padding-top: 30px !important;
+        margin: 0 !important;
+    }
+        button {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background-color: #fff;
+            border: none;
+          
+            &.lenses-icon{
+                position: absolute;
+                top: 30px;
+                left: 30px;
+            }
+
+            &.footprints-icon{
+                position: absolute;
+                top: 30px;
+                right: 30px;
+            }
+
+            &.person-location-icon{
+                position: absolute;
+                top: 200px;
+                left: calc(50% - (60px / 2)); 
+                .far{
+                    color: #38cbff;
+                
+                }
+            }
+
+            &.world-icon{
+                position: absolute;
+                bottom: 130px;
+                left: calc(50% - (60px / 2));
+            }
+
+            &.message-icon{
+                position: absolute;
+                bottom: 30px;
+                left: 30px;
+            }
+
+            &.add-friend-icon{
+                position: absolute;
+                bottom: 30px;
+                left: calc(50% - (60px / 2));
+                .fas{
+                    color: pink
+                
+                }
+                
+            }
+
+            &.profile-icon{
+                position: absolute;
+                bottom: 30px;
+                right: 30px;
+            }
+        }
+}
+
+.fas, .far{
+    color: rgb(50, 50, 92)
+}
+
+
+
+
+
+
+
+
