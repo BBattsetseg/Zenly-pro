@@ -11,16 +11,33 @@ const Profile = () =>{
                             <i class="fas fa-cog fa-3x"></i>
                         </div>
                         <div className="row">
-                            <div className="col m8 white row"> 
-                                <div className="col m11 profile-name">
-                                    <h4><b>Battsetseg</b></h4>
+                            <div className="col m8 s12 white row">                                                           
+                                <div className=" col m4 s8  profile-items space-between">
+                                <i class="fas fa-user"></i>
+                                <span><b>BATTSETSEG</b></span>
                                 </div>
-                                <div className="col m11  profile-edit-name">
+                                <div className=" col m4 s8  profile-items space-between">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Birthday</span>
+                                </div>
+                                <div className=" col m4 s8  profile-items space-between">
+                                <i class="fas fa-mobile-alt"></i>
+                                <span>5000-5000</span>
+                                </div>
+                                <div className=" col m4 s8  profile-items space-between">
+                                <i class="far fa-envelope"></i>
+                                <span>test@test.com</span>
+                                </div>
+                                <div className="col m4 s8  profile-items space-between">
+                                <i class="fas fa-eye"></i>
+                                <span>Passpord</span>
+                                </div>
+                                <div className="col m11 s12 profile-edit-name">
                                 <i class="fas fa-pen"></i>
-                                <span>SET USERNAME</span>
+                                <span>SAVE PROFILE</span>
                                 </div>
                             </div>
-                            <div className="col m3 profile-input-picture"> 
+                            <div className="col m3 s12 profile-input-picture"> 
                                 <div className="camera-icon">
                                     <i class="fas fa-camera fa-2x"></i>
                                 </div>
