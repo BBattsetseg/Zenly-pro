@@ -1,0 +1,39 @@
+.friend-container{
+    background-color: #ccc;
+    padding: 10px;
+    
+
+    h1,h2,h3,h4,h5 {
+        margin: 0 !important;
+        padding: 0;
+    }
+    .container-friend{
+        width: 80%;
+        margin: 10px 0;
+        margin: auto;
+        height: 99vh;
+        background-color: #fff;
+        border-radius: 15px;
+        padding: 20px;
+        padding-top: 60px !important;
+
+        nav {
+            &.container {
+               margin-bottom: 20px;
+               border-radius: 15px !important; 
+                    form{ 
+                        background-color: rgb(196, 194, 194); 
+                        border-radius: 15px !important; 
+                        .input-field{
+                            border-radius: 15px !important;  
+                            input {
+                                border-radius: 15px !important;  
+                                background-color: rgb(196, 194, 194);           
+                            }               
+                        } 
+                    }
+            }
+        }
+    }
+}
+

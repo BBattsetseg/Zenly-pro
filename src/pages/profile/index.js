@@ -5,6 +5,25 @@ const Profile = () =>{
     return(
             <div className="profile-container">   
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous"></link>            
+            
+            <div class="row">
+                <form class="col s12">
+                    <div class="row">
+                        <div class="input-field col m12">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="icon_prefix" type="text" class="validate"/>
+                        <label for="icon_prefix">First Name</label>
+                        </div>
+                        <div class="input-field col m12">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="icon_telephone" type="tel" class="validate"/>
+                        <label for="icon_telephone">Telephone</label>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+            {/* /////////////////////////////////////////////////////////////////////////// */}
                 <div className="container-profile">
                     <div className="profile-content"> 
                         <div className="icons"> 

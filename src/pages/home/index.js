@@ -1,6 +1,13 @@
 import React  from 'react';
 import './home.scss';
+import { useHistory } from "react-router-dom";
+
+
 const Home = () =>{
+    let history = useHistory();
+    const onClickUrl = (url)=>{
+       history.push(url);
+    }
 
     return(
             <div className="home-container">   
@@ -12,8 +19,8 @@ const Home = () =>{
                     <button className="person-location-icon"><i className="far fa-dot-circle fa-3x" ></i></button>
                     <button className="world-icon"><i className="fas fa-globe-americas fa-3x" ></i></button>
                     <button className="message-icon"><i className="fas fa-comment-dots fa-3x" ></i></button>
-                    <button className="add-friend-icon"><i className="fas fa-plus-square fa-3x" ></i></button>
-                    <button className="profile-icon"><i className="fas fa-user fa-3x" ></i></button>
+                    <button className="add-friend-icon" onClick={ ()=>onClickUrl( '/friends') }><i className="fas fa-plus-square fa-3x" ></i></button>
+                    <button className="profile-icon" onClick={ ()=>onClickUrl( '/profile') }><i className="fas fa-user fa-3x" ></i></button>
                 </div>
             </div>    
     )
