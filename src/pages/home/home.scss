@@ -1,14 +1,25 @@
+$primary-color: #38cbff;
+$secondary-color: #32325c;
+$pink: #fc49a2;
+
 .home-container{
     height: 100vh;
     width: 100%;
     background-color: #ccc;
     position: relative !important;
 
+    h1,h2,h3,h4,h5 {
+        color: $secondary-color !important;
+    }
+
     .country {
         text-align: center;
         padding: 0 !important;
         padding-top: 30px !important;
         margin: 0 !important;
+        &.h1 {
+            color: $secondary-color !important;
+        }
     }
         button {
             width: 60px;
@@ -34,7 +45,7 @@
                 top: 200px;
                 left: calc(50% - (60px / 2)); 
                 .far{
-                    color: #38cbff;
+                    color: $primary-color;
                 
                 }
             }
@@ -56,7 +67,7 @@
                 bottom: 30px;
                 left: calc(50% - (60px / 2));
                 .fas{
-                    color: pink
+                    color: $pink;
                 
                 }
                 
@@ -71,7 +82,7 @@
 }
 
 .fas, .far{
-    color: rgb(50, 50, 92)
+    color: $secondary-color;
 }
 
 

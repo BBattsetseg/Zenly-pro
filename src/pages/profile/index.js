@@ -1,74 +1,74 @@
 import React  from 'react';
 import './profile.scss';
+import M from 'materialize-css/dist/js/materialize';
+
+
 const Profile = () =>{
+    document.addEventListener('DOMContentLoaded', function() {
+        var elems = document.querySelector('.datepicker');
+        var instance = M.Datepicker.init(elems, '');
+        instance.toString();
+      });
 
     return(
             <div className="profile-container">   
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous"></link>            
-            
-            <div class="row">
-                <form class="col s12">
-                    <div class="row">
-                        <div class="input-field col m12">
-                        <i class="material-icons prefix">account_circle</i>
-                        <input id="icon_prefix" type="text" class="validate"/>
-                        <label for="icon_prefix">First Name</label>
-                        </div>
-                        <div class="input-field col m12">
-                        <i class="material-icons prefix">phone</i>
-                        <input id="icon_telephone" type="tel" class="validate"/>
-                        <label for="icon_telephone">Telephone</label>
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            {/* /////////////////////////////////////////////////////////////////////////// */}
                 <div className="container-profile">
                     <div className="profile-content"> 
                         <div className="icons"> 
                             <i class="fas fa-cog fa-3x"></i>
                         </div>
-                        <div className="row">
-                            <div className="col m8 s12 white row">                                                           
-                                <div className=" col m4 s8  profile-items space-between">
-                                <i class="fas fa-user"></i>
-                                <span><b>BATTSETSEG</b></span>
+                        <div className="row ">
+                            <div className="col l8 m7 s12 white">  
+                                <div className="row ">
+                                    <div class="input-field col l6 m9 s11 m-left profile-items">
+                                        <i class="fas fa-user prefix"></i>
+                                        <input id="icon_prefix" type="text" class="validate"/>
+                                        <label for="icon_prefix">First Name</label>
+                                    </div>
+                                </div> 
+                                <div className="row">
+                                    <div class="input-field col l6 m9 s11 m-left profile-items">
+                                        <i class="fas fa-mobile-alt prefix"></i>
+                                        <input id="icon_telephone" type="tel" class="validate"/>
+                                        <label for="icon_telephone">Telephone</label>
+                                    </div>
                                 </div>
-                                <div className=" col m4 s8  profile-items space-between">
-                                <i class="fas fa-calendar-alt"></i>
-                                <span>Birthday</span>
+                                <div className="row">
+                                    <div class="input-field col l6 m9 s11 m-left profile-items">
+                                        <i class="far fa-envelope prefix"></i>
+                                        <input id="email" type="email" class="validate"/>
+                                        <label for="email">Email</label>                            
+                                    </div>
                                 </div>
-                                <div className=" col m4 s8  profile-items space-between">
-                                <i class="fas fa-mobile-alt"></i>
-                                <span>5000-5000</span>
+                                <div className="row">
+                                    <div class="input-field col l6 m9 s11 m-left profile-items">                           
+                                        <input type="text" class="datepicker"/>  
+                                        <label for="date">Birthdate</label>                           
+                                    </div>
                                 </div>
-                                <div className=" col m4 s8  profile-items space-between">
-                                <i class="far fa-envelope"></i>
-                                <span>test@test.com</span>
-                                </div>
-                                <div className="col m4 s8  profile-items space-between">
-                                <i class="fas fa-eye"></i>
-                                <span>Passpord</span>
-                                </div>
-                                <div className="col m11 s12 profile-edit-name">
-                                <i class="fas fa-pen"></i>
-                                <span>SAVE PROFILE</span>
+                                <div className="row">
+                                    <div class="input-field col l6 m9 s11 m-left profile-items">
+                                        <i class="fas fa-eye prefix"></i>
+                                        <input id="password" type="password" class="validate"/>
+                                        <label for="password">Password</label>
+                                    </div>                                                                                 
                                 </div>
                             </div>
-                            <div className="col m3 s12 profile-input-picture"> 
+                            <div className="col l3 m4 s12 profile-input-picture"> 
                                 <div className="camera-icon">
                                     <i class="fas fa-camera fa-2x"></i>
                                 </div>
                             </div>
-                        </div>
-                        <div className="row"> 
+                        </div>                        
+                                <button className="save-profile">SAVE PROFILE</button>                    
+                        {/* <div className="row"> 
                             <div className="profile-icons">
                                 <button className="message-icon"><i className="fas fa-comment-dots fa-3x" ></i></button>
                                 <button className="world-icon"><i className="fas fa-globe-americas fa-3x" ></i></button>
                                 <button className="profile-icon"><i className="fas fa-user fa-3x" ></i></button>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>    

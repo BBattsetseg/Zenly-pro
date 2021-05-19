@@ -1,12 +1,15 @@
+$primary-color: #38cbff;
+$secondary-color: #32325c;
+$pink: #fc49a2;
+
 .profile-container {
-    background-color: #38cbff;
+    background-color: $secondary-color;
     width: 100%;
     height: 100vh;
     padding: 60px 0;
 
-    .space-between {
-        display: flex;
-        justify-content: space-between;
+    .m-left {
+        margin-left: 20% !important;
     }
 
     .container-profile{
@@ -17,7 +20,7 @@
         border-radius: 25px;
 
         .profile-content{
-            padding: 30px;
+            padding: 30px 10%;
             height: 100%;
 
             h1,h2,h3,h4,h5,h6{
@@ -33,23 +36,16 @@
 
                 .profile-name {
                     height: 50px;
-                    color: rgb(50, 50, 92);
+                    color: $secondary-color;
                     background-color: #fff !important;
                     padding-top: 2%;
                     
                 }
 
-                .profile-items {
-                    height: 40px;
-                    padding-top: 1.5%;
-                    border-radius: 5px;
-                    margin-left: 30% !important;
-                    border-bottom: #ccc 1px solid !important;
+                .profile-items {              
+                    border-radius: 5px;            
+                    border-bottom: #fff 1px solid !important;
                     background-color: #fff !important;
-                
-                    span {
-                        margin-left: 10px;
-                    }
                 }
                 .profile-edit-name {
                     height: 40px;
@@ -93,13 +89,25 @@
                 display: flex;
                 margin-top: 20px;
                 border: none;
-                
-
+        
                 button {
                     margin: 10%;
                     outline: none;
                 }
             }         
         }
+    }
+    .fas {
+        color: $secondary-color !important;
+    }
+
+    .save-profile{
+        width: 60%;
+        padding: 10px;
+        margin-top: 5px;
+        border: none;
+        color: #fff;
+        border-radius: 15px;
+        background-color: $pink;
     }
 }

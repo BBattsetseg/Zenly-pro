@@ -5,15 +5,17 @@ import './friend.scss';
 const FriendRequest = () =>{
 
     return(
+
+        <div className="f-container">
             <div className="friend-container">   
             <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous"></link>            
                 <div className="container-friend">
                    <div className="row">
                        <div className="col m6">
-                           <h3 className="indigo-text text-darken-4"><b>FRIENDS</b></h3>
+                           <h3><b>FRIENDS</b></h3>
                        </div>
                        <div className="col m6">
-                           <button className="btn-small pink">+ ADD FRIENDS</button>
+                           <button className="btn-small">+ ADD FRIENDS</button>
                        </div>
 
                    </div>
@@ -22,7 +24,7 @@ const FriendRequest = () =>{
                         <form>
                             <div class="input-field  grey">
                             <input id="search" type="search" required/>
-                            <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                            <label class="label-icon" for="search"><i class="fas fa-search"></i></label>
                             <i class="material-icons">close</i>
                             </div>
                         </form>
@@ -40,7 +42,7 @@ const FriendRequest = () =>{
                             <p>First Line 
                             </p>
                             <a href="#!" class="secondary-content">
-                            <i class="fas fa-user-plus fa-2x pink-text"></i>
+                            <i class="fas fa-user-plus fa-2x "></i>
                             </a>
                         </li>
                         <li class="collection-item avatar">
@@ -49,7 +51,7 @@ const FriendRequest = () =>{
                             <p>First Line 
                             </p>
                             <a href="#!" class="secondary-content">
-                            <i class="fas fa-user-plus fa-2x pink-text"></i>
+                            <i class="fas fa-user-plus fa-2x "></i>
                             </a>
                         </li>
                         <li class="collection-item avatar">
@@ -58,7 +60,7 @@ const FriendRequest = () =>{
                             <p>First Line 
                             </p>
                             <a href="#!" class="secondary-content">
-                            <i class="fas fa-user-plus fa-2x pink-text"></i>
+                            <i class="fas fa-user-plus fa-2x "></i>
                             </a>
                         </li>
                         <li class="collection-item avatar">
@@ -67,7 +69,7 @@ const FriendRequest = () =>{
                             <p>First Line 
                             </p>
                             <a href="#!" class="secondary-content">
-                            <i class="fas fa-user-plus fa-2x pink-text"></i>
+                            <i class="fas fa-user-plus fa-2x"></i>
                             </a>
                         </li>                     
                         <li class="collection-item avatar">
@@ -76,7 +78,7 @@ const FriendRequest = () =>{
                             <p>First Line 
                             </p>
                             <a href="#!" class="secondary-content">
-                            <i class="fas fa-user-plus fa-2x pink-text"></i>
+                            <i class="fas fa-user-plus fa-2x "></i>
                             </a>
                         </li>                     
                         <li class="collection-item avatar">
@@ -85,12 +87,13 @@ const FriendRequest = () =>{
                             <p>First Line 
                             </p>
                             <a href="#!" class="secondary-content">
-                            <i class="fas fa-user-plus fa-2x pink-text"></i>
+                            <i class="fas fa-user-plus fa-2x"></i>
                             </a>
                         </li>                     
                     </ul>
                 </div>
             </div>    
+        </div>
     )
 }
 
