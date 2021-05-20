@@ -6,7 +6,7 @@ import {BrowserRouter, Route,} from 'react-router-dom';
 import Start from './pages/start';
 import SignUp from './pages/start/signUp.js';
 import firebase, {firestore, auth} from './firebase';
-import Fb from './firebase/fb';
+import Fb from './firebase/exp.js';
 
 
 function App() {
@@ -14,8 +14,8 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <Route path="/" exact>
-          <Fb/>
-          {/* <Start/> */}
+          {/* <Fb/> */}
+          <Start/>
         </Route > 
         <Route path="/signUp" exact>
           <SignUp/>
