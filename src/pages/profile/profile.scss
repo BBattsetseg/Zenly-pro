@@ -3,111 +3,114 @@ $secondary-color: #32325c;
 $pink: #fc49a2;
 
 .profile-container {
-    background-color: $secondary-color;
-    width: 100%;
-    height: 100vh;
-    padding: 60px 0;
+  background-color: $secondary-color;
+  width: 100%;
+  height: 100vh;
+  padding: 60px 0;
 
-    .m-left {
-        margin-left: 20% !important;
-    }
+  .m-left {
+    margin-left: 20% !important;
+  }
 
-    .container-profile{
-        width: 90%;
-        margin: auto;
-        height: 100%;
-        background-color: #fff;
-        border-radius: 25px;
+  .container-profile {
+    width: 90%;
+    margin: auto;
+    height: 100%;
+    background-color: #fff;
+    border-radius: 25px;
 
-        .profile-content{
-            padding: 30px 10%;
-            height: 100%;
+    .profile-content {
+      padding: 30px 10%;
+      height: 100%;
 
-            h1,h2,h3,h4,h5,h6{
-                margin: 0 !important;
-                vertical-align: middle;
-            }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        margin: 0 !important;
+        vertical-align: middle;
+      }
 
-            .icons{
-                width: 40px;
-            }
-            .row{
-                margin: 5px;
+      .icons {
+        width: 40px;
+      }
+      .row {
+        margin: 5px;
 
-                .profile-name {
-                    height: 50px;
-                    color: $secondary-color;
-                    background-color: #fff !important;
-                    padding-top: 2%;
-                    
-                }
-
-                .profile-items {              
-                    border-radius: 5px;            
-                    border-bottom: #fff 1px solid !important;
-                    background-color: #fff !important;
-                }
-                .profile-edit-name {
-                    height: 40px;
-                    padding-top: 1.5%;
-                    border-radius: 20px;
-                   
-                    span {
-                        margin-left: 10px;
-                    }
-                   
-                }
-                .profile-input-picture {
-                    height: 200px;
-                    border-radius: 50px;
-                    position: relative;
-
-                    .camera-icon {
-                        width: 50px;
-                        position: absolute;
-                        bottom: 3px;
-                        right: 3px;
-                        height: 50px;
-                        background-color: rgb(231, 227, 227);
-                        border: white 1px solid;
-                        border-radius: 50%;
-                        i {
-                            transform: translateY(45%);
-                        }
-                    }
-                }
-
-                .col {
-                    margin: 5px;
-                    background-color: #ccc;
-                }
-            }
-
-            .profile-icons{
-                width: 70%;
-                margin: auto;
-                display: flex;
-                margin-top: 20px;
-                border: none;
-        
-                button {
-                    margin: 10%;
-                    outline: none;
-                }
-            }         
+        .profile-name {
+          height: 50px;
+          color: $secondary-color;
+          background-color: #fff !important;
+          padding-top: 2%;
         }
-    }
-    .fas {
-        color: $secondary-color !important;
-    }
 
-    .save-profile{
-        width: 60%;
-        padding: 10px;
-        margin-top: 5px;
+        .profile-items {
+          border-radius: 5px;
+          border-bottom: #fff 1px solid !important;
+          background-color: #fff !important;
+        }
+        .profile-edit-name {
+          height: 40px;
+          padding-top: 1.5%;
+          border-radius: 20px;
+
+          span {
+            margin-left: 10px;
+          }
+        }
+        .profile-input-picture {
+          height: 200px;
+          border-radius: 50px;
+          position: relative;
+
+          .camera-icon {
+            width: 50px;
+            position: absolute;
+            bottom: 3px;
+            right: 3px;
+            height: 50px;
+            background-color: rgb(231, 227, 227);
+            border: white 1px solid;
+            border-radius: 50%;
+            i {
+              transform: translateY(45%);
+            }
+          }
+        }
+
+        .col {
+          margin: 5px;
+          background-color: #ccc;
+        }
+      }
+
+      .profile-icons {
+        width: 70%;
+        margin: auto;
+        display: flex;
+        margin-top: 20px;
         border: none;
-        color: #fff;
-        border-radius: 15px;
-        background-color: $pink;
+
+        button {
+          margin: 10%;
+          outline: none;
+        }
+      }
     }
+  }
+  .fas {
+    color: $secondary-color !important;
+  }
+
+  .save-profile {
+    width: 60%;
+    padding: 10px;
+    margin-top: 5px;
+    border: none;
+    color: #fff;
+    border-radius: 15px;
+    background-color: $pink;
+  }
 }
