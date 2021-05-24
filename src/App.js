@@ -6,8 +6,36 @@ import { BrowserRouter, Route } from "react-router-dom";
 import Start from "./pages/start";
 import SignUp from "./pages/start/signUp.js";
 import SignIn from "./pages/start/signIn.js";
+import { useEffect, useState } from "react";
+import firebase,{auth} from './firebase/index';
+
 
 function App() {
+  const [user, setUser] = useState('');
+  const [isLogin, setIsLogin] = useState(false);
+  const [data,setData] = useState('')
+
+  useEffect(()=>{
+    const unsubscribe = firebase.auth().onAuthStateChanged((user)=>{
+      if(user) {
+        setUser({
+            uid: user.uid,
+            phone: user.phoneNumber,
+          })
+             // data .... from firebase uid-aar n 
+          setIsLogin(true)
+
+      } else {
+        setUser(null)
+        setIsLogin(false)
+      }
+    });
+
+    return()=>{
+      unsubscribe()
+    }
+  },[])
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -18,7 +46,7 @@ function App() {
           <SignUp />
         </Route>
         <Route path="/signIn">
-          <SignIn />
+          <SignIn user={user} isLogin={isLogin} setIsLogin={setIsLogin}/>
         </Route>
         <Route path="/home">
           <Home />

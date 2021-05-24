@@ -3,52 +3,42 @@ import firebase, { auth } from "../../firebase";
 import "./start.scss";
 import { useHistory } from "react-router-dom";
 
-const SignIn = () => {
+const SignIn = (props) => {
+
   const [input, setInput] = useState("");
   const [confirmCode, setConfirmCode] = useState("");
   const [sentCode, setSentCode] = useState(false);
   const [error, setError] = useState(null);
-  const recaptcha = useRef(null);
-  const [isLogin, setIsLogin] = useState(false);
+ 
   const [loading, setLoading] = useState(false);
   const history = useHistory();
+  const confirmationResult = useRef();
+  const recaptchaVerifier = useRef();
+
+  let user = props.user;
+  let isLogin = props.isLogin;
+  let setIsLogin = props.setIsLogin;
 
   useEffect(() => {
     // auth.languageCode = "mn";
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier(
+    recaptchaVerifier.current = new firebase.auth.RecaptchaVerifier(
       "sign-in-button",
       {
         size: "normal",
-        // 'size': 'invisible',
-        // 'callback': (response) => {
-        //     onSignInSubmit();
-        // }
       }
     );
-
-    auth.onAuthStateChanged((user) => {
-      console.log(user);
-      if (user) {
-        setIsLogin(true);
-      } else {
-        setIsLogin(false);
-      }
-    });
   }, []);
 
-  useEffect(() => {
-    console.log(auth.currentUser);
-  }, [auth]);
 
   const sendCode = async (event) => {
     event.preventDefault();
     setError(null);
     setLoading(true);
-    const appVerifier = window.recaptchaVerifier;
+
     try {
-      window.confirmationResult = await auth.signInWithPhoneNumber(
+      confirmationResult.current = await auth.signInWithPhoneNumber(
         `+976 ${input}`,
-        appVerifier
+        recaptchaVerifier.current
       );
       setSentCode(true);
     } catch (e) {
@@ -63,10 +53,10 @@ const SignIn = () => {
   };
 
   const login = async () => {
+    console.log("login ");
     try {
-      let result = await window.confirmationResult.confirm(confirmCode);
-      console.log(result.user.phoneNumber);
-      setIsLogin(true);
+     await confirmationResult.current.confirm(confirmCode);
+
     } catch (error) {
       alert("code buruu");
     }
@@ -78,7 +68,6 @@ const SignIn = () => {
 
   const logout = async () => {
     await auth.signOut();
-    setIsLogin(false);
   };
 
   return (
@@ -86,36 +75,42 @@ const SignIn = () => {
       <div className="row">
         {isLogin ? (
           <div className="sing-container">
-            <div class="row">
-              <form class="col s12">
-                <div class="row">
-                  <div class="input-field col s6">
-                    <i class="fas fa-user prefix"></i>
-                    <input id="icon_prefix" type="text" class="validate" />
+            <div className="row">
+              {/* <h1 className="red">{user.uid}</h1> */}
+              <form className="col s12">
+                <div className="row">
+                  <div className="input-field col s6">
+                    <i className="fas fa-user prefix"></i>
+                    <input id="icon_prefix" type="text" className="validate" />
                     <label for="icon_prefix">First Name</label>
                   </div>
-                  <div class="input-field col s6">
-                    <i class="fas fa-mobile-alt prefix"></i>
-                    <input id="icon_telephone" type="tel" class="validate" />
+                  <div className="input-field col s6">
+                    <i className="fas fa-mobile-alt prefix"></i>
+                    <input
+                      id="icon_telephone"
+                      type="tel"
+                      className="validate"
+                    />
                     <label for="icon_telephone">Telephone</label>
                   </div>
                 </div>
               </form>
-              <button
+              <button className="m-10"
                 onClick={() => {
                   onClickUrl("/home");
                 }}
               >
                 HOME
               </button>
-              <button
+              <button className="m-10"
                 onClick={() => {
                   onClickUrl("/profile");
                 }}
               >
                 profile
               </button>
-              <button onClick={logout}>Гарах</button>
+
+              <button className="m-10" onClick={logout}>Гарах</button>
             </div>
           </div>
         ) : (
@@ -131,7 +126,7 @@ const SignIn = () => {
                   onChange={(event) => setInput(event.target.value)}
                   id="icon_telephone"
                   type="tel"
-                  class="validate"
+                  className="validate"
                 />
                 <label for="icon_telephone">Phone</label>
                 <span className="helper-text">Please enter a phone number</span>
@@ -150,9 +145,10 @@ const SignIn = () => {
                   />
                   <label for="icon_prefix">Batalgaajuulah</label>
                   <button
-                    onClick={() => {
-                      login && onClickUrl("/home");
-                
+                    onClick={(e) => {
+                      e.preventDefault();
+                      // login && onClickUrl("/home");
+                      login();
                     }}
                   >
                     Нэвтрэх
