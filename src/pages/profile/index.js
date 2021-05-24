@@ -2,7 +2,8 @@ import React from "react";
 import "./profile.scss";
 import M from "materialize-css/dist/js/materialize";
 
-const Profile = () => {
+const Profile = (props) => {
+  let isLogin = props.isLogin;
   document.addEventListener("DOMContentLoaded", function () {
     var elems = document.querySelector(".datepicker");
     var instance = M.Datepicker.init(elems, "");

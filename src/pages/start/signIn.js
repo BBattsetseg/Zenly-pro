@@ -4,18 +4,18 @@ import "./start.scss";
 import { useHistory } from "react-router-dom";
 
 const SignIn = (props) => {
-
   const [input, setInput] = useState("");
   const [confirmCode, setConfirmCode] = useState("");
   const [sentCode, setSentCode] = useState(false);
   const [error, setError] = useState(null);
- 
+
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const confirmationResult = useRef();
   const recaptchaVerifier = useRef();
 
   let user = props.user;
+
   let isLogin = props.isLogin;
   let setIsLogin = props.setIsLogin;
 
@@ -28,7 +28,6 @@ const SignIn = (props) => {
       }
     );
   }, []);
-
 
   const sendCode = async (event) => {
     event.preventDefault();
@@ -53,10 +52,8 @@ const SignIn = (props) => {
   };
 
   const login = async () => {
-    console.log("login ");
     try {
-     await confirmationResult.current.confirm(confirmCode);
-
+      await confirmationResult.current.confirm(confirmCode);
     } catch (error) {
       alert("code buruu");
     }
@@ -70,49 +67,39 @@ const SignIn = (props) => {
     await auth.signOut();
   };
 
+  const Logged = () => {
+    return (
+      <div className="sing-container">
+        <div className="row">
+          <h1>Welcome Battsetseg</h1>
+          <button
+            className="m-10"
+            onClick={() => {
+              onClickUrl("/home");
+            }}
+          >
+            HOME
+          </button>
+          <button
+            className="m-10"
+            onClick={() => {
+              onClickUrl("/profile");
+            }}
+          >
+            profile
+          </button>
+          <button className="m-10" onClick={logout}>
+            Гарах
+          </button>
+        </div>
+      </div>
+    );
+  };
   return (
     <div className="sing-container">
       <div className="row">
         {isLogin ? (
-          <div className="sing-container">
-            <div className="row">
-              {/* <h1 className="red">{user.uid}</h1> */}
-              <form className="col s12">
-                <div className="row">
-                  <div className="input-field col s6">
-                    <i className="fas fa-user prefix"></i>
-                    <input id="icon_prefix" type="text" className="validate" />
-                    <label for="icon_prefix">First Name</label>
-                  </div>
-                  <div className="input-field col s6">
-                    <i className="fas fa-mobile-alt prefix"></i>
-                    <input
-                      id="icon_telephone"
-                      type="tel"
-                      className="validate"
-                    />
-                    <label for="icon_telephone">Telephone</label>
-                  </div>
-                </div>
-              </form>
-              <button className="m-10"
-                onClick={() => {
-                  onClickUrl("/home");
-                }}
-              >
-                HOME
-              </button>
-              <button className="m-10"
-                onClick={() => {
-                  onClickUrl("/profile");
-                }}
-              >
-                profile
-              </button>
-
-              <button className="m-10" onClick={logout}>Гарах</button>
-            </div>
-          </div>
+          <Logged />
         ) : (
           <form className="col s12">
             <div className="row">
@@ -147,7 +134,6 @@ const SignIn = (props) => {
                   <button
                     onClick={(e) => {
                       e.preventDefault();
-                      // login && onClickUrl("/home");
                       login();
                     }}
                   >

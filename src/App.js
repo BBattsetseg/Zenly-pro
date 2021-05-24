@@ -2,7 +2,7 @@ import "./App.css";
 import Home from "./pages/home";
 import Profile from "./pages/profile";
 import FriendRequest from "./pages/friend-req";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
 import Start from "./pages/start";
 import SignUp from "./pages/start/signUp.js";
 import SignIn from "./pages/start/signIn.js";
@@ -49,13 +49,28 @@ function App() {
           <SignIn user={user} isLogin={isLogin} setIsLogin={setIsLogin}/>
         </Route>
         <Route path="/home">
-          <Home />
+          {
+            isLogin &&  <Home />
+          }
+          {
+            !isLogin &&  <Redirect  to="/" exact/>
+          }       
         </Route>
         <Route path="/profile">
-          <Profile />
+          {
+            isLogin &&   <Profile />
+          }
+          {
+            !isLogin &&  <Redirect  to="/" exact/>
+          }    
         </Route>
         <Route path="/friends">
-          <FriendRequest />
+          {
+            isLogin &&   <FriendRequest />
+          }
+          {
+            !isLogin &&  <Redirect  to="/" exact/>
+          } 
         </Route>
       </div>
     </BrowserRouter>
