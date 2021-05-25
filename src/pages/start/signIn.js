@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import firebase, { auth } from "../../firebase";
 import "./start.scss";
-import { useHistory } from "react-router-dom";
+import { Redirect, useHistory } from "react-router-dom";
 
 const SignIn = (props) => {
   const [input, setInput] = useState("");
@@ -12,17 +12,20 @@ const SignIn = (props) => {
   const [loading, setLoading] = useState(false);
   const history = useHistory();
   const confirmationResult = useRef();
-  const recaptchaVerifier = useRef();
+  const recaptchaVerifier = useRef(); //recaptcha
 
   let user = props.user;
-
   let isLogin = props.isLogin;
-  let setIsLogin = props.setIsLogin;
+
+  // console.log(user.uid)
+  if(isLogin){
+    history.push('/home');
+  }
 
   useEffect(() => {
     // auth.languageCode = "mn";
-    recaptchaVerifier.current = new firebase.auth.RecaptchaVerifier(
-      "sign-in-button",
+    recaptchaVerifier.current = new firebase.auth.RecaptchaVerifier(     //recaptcha object uusgej bn
+      "sign-in-button",   
       {
         size: "normal",
       }
@@ -35,7 +38,7 @@ const SignIn = (props) => {
     setLoading(true);
 
     try {
-      confirmationResult.current = await auth.signInWithPhoneNumber(
+      confirmationResult.current = await auth.signInWithPhoneNumber(     // utsand irsn code
         `+976 ${input}`,
         recaptchaVerifier.current
       );
@@ -53,54 +56,15 @@ const SignIn = (props) => {
 
   const login = async () => {
     try {
-      await confirmationResult.current.confirm(confirmCode);
+      await confirmationResult.current.confirm(confirmCode);  //code-iin shalgaad, user -eer burtgej bga
     } catch (error) {
       alert("code buruu");
     }
   };
 
-  const onClickUrl = (url) => {
-    history.push(url);
-  };
-
-  const logout = async () => {
-    await auth.signOut();
-  };
-
-  const Logged = () => {
-    return (
-      <div className="sing-container">
-        <div className="row">
-          <h1>Welcome Battsetseg</h1>
-          <button
-            className="m-10"
-            onClick={() => {
-              onClickUrl("/home");
-            }}
-          >
-            HOME
-          </button>
-          <button
-            className="m-10"
-            onClick={() => {
-              onClickUrl("/profile");
-            }}
-          >
-            profile
-          </button>
-          <button className="m-10" onClick={logout}>
-            Гарах
-          </button>
-        </div>
-      </div>
-    );
-  };
   return (
     <div className="sing-container">
       <div className="row">
-        {isLogin ? (
-          <Logged />
-        ) : (
           <form className="col s12">
             <div className="row">
               <h1>Welcome Zenly</h1>
@@ -115,7 +79,7 @@ const SignIn = (props) => {
                   type="tel"
                   className="validate"
                 />
-                <label for="icon_telephone">Phone</label>
+                <label htmlFor="icon_telephone">Phone</label>
                 <span className="helper-text">Please enter a phone number</span>
               </div>
               {sentCode && (
@@ -130,7 +94,7 @@ const SignIn = (props) => {
                     type="text"
                     className="validate"
                   />
-                  <label for="icon_prefix">Batalgaajuulah</label>
+                  <label htmlFor="icon_prefix">Batalgaajuulah</label>
                   <button
                     onClick={(e) => {
                       e.preventDefault();
@@ -151,7 +115,6 @@ const SignIn = (props) => {
               )}
             </div>
           </form>
-        )}
       </div>
     </div>
   );

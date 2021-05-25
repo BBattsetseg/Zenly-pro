@@ -1,11 +1,16 @@
 import React from "react";
 import "./home.scss";
 import { useHistory } from "react-router-dom";
+import firebase,{auth, firestore} from '../../firebase/index.js';
 
 const Home = () => {
   let history = useHistory();
   const onClickUrl = (url) => {
     history.push(url);
+  };
+
+  const logout = async () => {
+    await auth.signOut();
   };
 
   return (
@@ -18,12 +23,11 @@ const Home = () => {
       ></link>
       <div className="container">
         <h1 className="text-center country">MONGOLIA</h1>
+      
         <button className="lenses-icon">
           <i className="fas fa-clone fa-3x"></i>
         </button>
-        <button className="footprints-icon">
-          <i className="fas fa-crown fa-3x"></i>
-        </button>
+        <button className="footprints-icon" onClick={logout}><i class="fas fa-sign-out-alt fa-3x"></i></button>
         <button className="person-location-icon">
           <i className="far fa-dot-circle fa-3x"></i>
         </button>

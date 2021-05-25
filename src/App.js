@@ -2,28 +2,38 @@ import "./App.css";
 import Home from "./pages/home";
 import Profile from "./pages/profile";
 import FriendRequest from "./pages/friend-req";
-import { BrowserRouter, Redirect, Route } from "react-router-dom";
+import { BrowserRouter, Redirect, Route, useHistory } from "react-router-dom";
 import Start from "./pages/start";
 import SignUp from "./pages/start/signUp.js";
 import SignIn from "./pages/start/signIn.js";
 import { useEffect, useState } from "react";
-import firebase,{auth} from './firebase/index';
+import firebase,{auth, firestore} from './firebase/index';
 
 
 function App() {
   const [user, setUser] = useState('');
   const [isLogin, setIsLogin] = useState(false);
-  const [data,setData] = useState('')
+  const history = useHistory();
 
   useEffect(()=>{
     const unsubscribe = firebase.auth().onAuthStateChanged((user)=>{
       if(user) {
         setUser({
             uid: user.uid,
-            phone: user.phoneNumber,
+            phone: user.phoneNumber,         
           })
-             // data .... from firebase uid-aar n 
-          setIsLogin(true)
+
+          var userRef = firestore.collection("users");
+          userRef.doc(`${user.uid}`).get().then((doc)=>{
+            if(doc.exists){
+              history.push('/home')
+            } else {
+              history.push('/profile')
+            }
+           console.log(doc)
+          })
+
+        setIsLogin(true)
 
       } else {
         setUser(null)
@@ -58,7 +68,7 @@ function App() {
         </Route>
         <Route path="/profile">
           {
-            isLogin &&   <Profile />
+            isLogin &&   <Profile user={user}/>
           }
           {
             !isLogin &&  <Redirect  to="/" exact/>
@@ -66,7 +76,7 @@ function App() {
         </Route>
         <Route path="/friends">
           {
-            isLogin &&   <FriendRequest />
+            isLogin &&   <FriendRequest user={user}/>
           }
           {
             !isLogin &&  <Redirect  to="/" exact/>
