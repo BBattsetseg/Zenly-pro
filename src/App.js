@@ -2,7 +2,7 @@ import "./App.css";
 import Home from "./pages/home";
 import Profile from "./pages/profile";
 import FriendRequest from "./pages/friend-req";
-import { BrowserRouter, Redirect, Route, useHistory } from "react-router-dom";
+import { Redirect, Route, useHistory } from "react-router-dom";
 import Start from "./pages/start";
 import SignUp from "./pages/start/signUp.js";
 import SignIn from "./pages/start/signIn.js";
@@ -10,44 +10,58 @@ import { useEffect, useState } from "react";
 import firebase,{auth, firestore} from './firebase/index';
 
 
-function App() {
-  const [user, setUser] = useState('');
+const App = () => {
+  const [user, setUser] = useState({
+    userName: {},
+    id: {},
+    hidden: {},
+    email: {},
+    photo: {},
+    phone: {},
+    birthday: {},
+    password: {}
+
+  });
+
   const [isLogin, setIsLogin] = useState(false);
   const history = useHistory();
 
   useEffect(()=>{
-    const unsubscribe = firebase.auth().onAuthStateChanged((user)=>{
-      if(user) {
-        setUser({
-            uid: user.uid,
-            phone: user.phoneNumber,         
-          })
-
-          var userRef = firestore.collection("users");
-          userRef.doc(`${user.uid}`).get().then((doc)=>{
-            if(doc.exists){
-              history.push('/home')
-            } else {
-              history.push('/profile')
-            }
-           console.log(doc)
-          })
-
-        setIsLogin(true)
+    const unsubscribe =  firebase.auth().onAuthStateChanged( async (user)=>{
+      if(!user) {
+        setUser({})
+        setIsLogin(false)
 
       } else {
-        setUser(null)
-        setIsLogin(false)
-      }
+          var dataRef = await firestore.collection("users").doc(`${user.uid}`).get();
+          let data = dataRef.data();
+          console.log(data);
+
+         if(!dataRef.exists){
+          setUser({
+            uid: user.uid,
+            phone: user.phoneNumber
+          })
+          history.push('/profile')
+
+         } else {
+           setUser({
+             uid: user.uid,
+             phone: user.phoneNumber, 
+             ...data
+           })
+         }
+
+        setIsLogin(true)
+      } 
     });
 
     return()=>{
       unsubscribe()
     }
-  },[])
+  },[]);
 
   return (
-    <BrowserRouter>
       <div className="App">
         <Route path="/" exact>
           <Start />
@@ -68,7 +82,7 @@ function App() {
         </Route>
         <Route path="/profile">
           {
-            isLogin &&   <Profile user={user}/>
+            isLogin &&   <Profile user={user} setUser={setUser}/>
           }
           {
             !isLogin &&  <Redirect  to="/" exact/>
@@ -83,7 +97,6 @@ function App() {
           } 
         </Route>
       </div>
-    </BrowserRouter>
   );
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import "./friend.scss";
 
-const FriendRequest = () => {
+const FriendRequest = (props) => {
   return (
     <div className="f-container">
       <div className="friend-container">

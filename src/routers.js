@@ -7,13 +7,12 @@ import {
 
 import App from './App';
 
-
-  const Routers = () =>{
+  const Routers = () => {   
       return(
-        <Router>
-            <Route>
+        <Router>     
+          <Route>
                 <App/>
-            </Route>
+          </Route>
       </Router>
       )
   }

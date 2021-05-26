@@ -4,7 +4,9 @@ import { useHistory } from "react-router-dom";
 import firebase,{auth, firestore} from '../../firebase/index.js';
 
 const Home = () => {
+  
   let history = useHistory();
+
   const onClickUrl = (url) => {
     history.push(url);
   };
@@ -19,7 +21,7 @@ const Home = () => {
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
         integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk"
-        crossorigin="anonymous"
+        crossOrigin="anonymous"
       ></link>
       <div className="container">
         <h1 className="text-center country">MONGOLIA</h1>
@@ -27,7 +29,7 @@ const Home = () => {
         <button className="lenses-icon">
           <i className="fas fa-clone fa-3x"></i>
         </button>
-        <button className="footprints-icon" onClick={logout}><i class="fas fa-sign-out-alt fa-3x"></i></button>
+        <button className="footprints-icon" onClick={logout}><i className="fas fa-sign-out-alt fa-3x"></i></button>
         <button className="person-location-icon">
           <i className="far fa-dot-circle fa-3x"></i>
         </button>

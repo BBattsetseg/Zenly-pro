@@ -11,17 +11,17 @@ const SignUp = () => {
 
   return (
     <div className="sing-container">
-      <div class="row">
-        <form class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-              <i class="fas fa-user prefix"></i>
-              <input id="icon_prefix" type="text" class="validate" />
+      <div className="row">
+        <form className="col s12">
+          <div className="row">
+            <div className="input-field col s6">
+              <i className="fas fa-user prefix"></i>
+              <input id="icon_prefix" type="text" className="validate" />
               <label for="icon_prefix">First Name</label>
             </div>
-            <div class="input-field col s6">
-              <i class="fas fa-mobile-alt prefix"></i>
-              <input id="icon_telephone" type="tel" class="validate" />
+            <div className="input-field col s6">
+              <i className="fas fa-mobile-alt prefix"></i>
+              <input id="icon_telephone" type="tel" className="validate" />
               <label for="icon_telephone">Telephone</label>
             </div>
           </div>
