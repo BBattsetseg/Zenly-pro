@@ -7,15 +7,16 @@ import { useHistory } from "react-router";
 const Profile = (props) => {
   let user = props.user;
   const history = useHistory();
-
+  const [profile, setProfile] = useState({});
 
   document.addEventListener("DOMContentLoaded", function () {
-    var elems = document.querySelector(".datepicker");
-    var instance = M.Datepicker.init(elems, "");
-    instance.toString();
+    let elems = document.getElementsByClassName('datepicker');
+    elems.forEach((el)=>{
+      let instance = M.Datepicker.init(el,  {"format": "m/d/yyyy"});
+      instance.toString();
+    })
   });
 
-  const [profile, setProfile] = useState({});
   const getInput = (field) => {
     return (e) => {
       setProfile({
@@ -63,9 +64,10 @@ const Profile = (props) => {
                       type="text"
                       className="validate"
                       onChange={getInput("userName")}
-                      value={profile.userName}
+                      value={user.userName}
+                      placeholder="UserName"
                     />
-                    <label htmlFor="icon_prefix">User Name</label>
+                    <label htmlFor="icon_prefix" ></label>
                   </div>
                 </div>
                 <div className="row">
@@ -76,9 +78,10 @@ const Profile = (props) => {
                       type="tel"
                       className="validate"
                       onChange={getInput("telephone")}
-                      value={profile.telephone}
+                      value={user.telephone}
+                      placeholder="Telephone"
                     />
-                    <label htmlFor="icon_telephone">Telephone</label>
+                    <label htmlFor="icon_telephone"></label>
                   </div>
                 </div>
                 <div className="row">
@@ -89,20 +92,22 @@ const Profile = (props) => {
                       type="email"
                       className="validate"
                       onChange={getInput("email")}
-                      value={profile.email}
+                      value={user.email}
+                      placeholder="Email"
                     />
-                    <label htmlFor="email">Email</label>
+                    <label htmlFor="email"></label>
                   </div>
                 </div>
                 <div className="row">
                   <div className="input-field col l6 m9 s11 m-left profile-items">
                     <input
                       type="text"
+                      name="startDate"
                       className="datepicker"
                       onChange={getInput("birthDate")}
-                      value={profile.birthDate}
+                      value={user.birthDate}
+                      placeholder="Birthdate"
                     />
-                    <label htmlFor="date">Birthdate</label>
                   </div>
                 </div>
                 <div className="row">
@@ -113,9 +118,10 @@ const Profile = (props) => {
                       type="password"
                       className="validate"
                       onChange={getInput("password")}
-                      value={profile.password}
+                      value={user.password}
+                      placeholder="password"
                     />
-                    <label htmlFor="password">Password</label>
+                    <label htmlFor="password" ></label>
                   </div>
                 </div>
               </div>
@@ -144,7 +150,7 @@ const Profile = (props) => {
               </button>
               <button className="profile-icon">
                 <i
-                  className="fas fa-user fa-3x"
+                  className="fas fa-user-friends fa-3x"
                   onClick={() => {
                     onClickUrl("/friends");
                   }}

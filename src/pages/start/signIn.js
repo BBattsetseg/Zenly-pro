@@ -17,7 +17,6 @@ const SignIn = (props) => {
   let user = props.user;
   let isLogin = props.isLogin;
 
-  // console.log(user.uid)
   if(isLogin){
     history.push('/home');
   }

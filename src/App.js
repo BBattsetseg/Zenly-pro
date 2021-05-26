@@ -33,22 +33,20 @@ const App = () => {
         setIsLogin(false)
 
       } else {
-          var dataRef = await firestore.collection("users").doc(`${user.uid}`).get();
-          let data = dataRef.data();
-          console.log(data);
+          const dataRef = await firestore.collection("users").doc(`${user.uid}`).get();
 
          if(!dataRef.exists){
           setUser({
             uid: user.uid,
             phone: user.phoneNumber
           })
-          history.push('/profile')
+          history.replace('/profile')
 
          } else {
            setUser({
              uid: user.uid,
              phone: user.phoneNumber, 
-             ...data
+             ...(dataRef.data() || {}),            
            })
          }
 
@@ -59,7 +57,7 @@ const App = () => {
     return()=>{
       unsubscribe()
     }
-  },[]);
+  },[history]);
 
   return (
       <div className="App">
