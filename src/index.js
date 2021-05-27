@@ -2,12 +2,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import Routers from './routers';
+// import GoogleMap from './pages/googleMap/index'
 import reportWebVitals from './reportWebVitals';
 import 'materialize-css/dist/css/materialize.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
     <Routers />
+    {/* <GoogleMap/> */}
   </React.StrictMode>,
   document.getElementById('root')
 );
