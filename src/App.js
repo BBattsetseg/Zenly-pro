@@ -72,7 +72,7 @@ const App = () => {
         </Route>
         <Route path="/home">
           {
-            isLogin &&  <Home />
+            isLogin &&  <Home user={user}/>
           }
           {
             !isLogin &&  <Redirect  to="/" exact/>

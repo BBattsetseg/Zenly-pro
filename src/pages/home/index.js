@@ -3,8 +3,8 @@ import "./home.scss";
 import { useHistory } from "react-router-dom";
 import {auth} from '../../firebase/index.js';
 // import GoogleMapReact from 'google-map-react';
-
-const Home = () => {
+import Google from '../google'
+const Home = (props) => {
   
   let history = useHistory();
 
@@ -16,17 +16,9 @@ const Home = () => {
     await auth.signOut();
   };
 
-//   useEffect(() => {
-//     const googleMapScript = document.createElement('script');
-//     googleMapScript.src=`https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`;
-//     googleMapScript.async = true;
-//     window.document.body.appendChild(googleMapScript);
-//     googleMapScript.addEventListener('load', onGoogleMapLoad);
-// }, []);
-
-
   return (
     <div className="home-container">
+       <Google user={props.user}/>
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -34,8 +26,8 @@ const Home = () => {
         crossOrigin="anonymous"
       ></link>
       <div className="container">
-        <h1 className="text-center country">MONGOLIA</h1>
-      
+     
+         
         <button className="lenses-icon">
           <i className="fas fa-clone fa-3x"></i>
         </button>
