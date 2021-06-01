@@ -1,15 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Routers from './routers';
-// import GoogleMap from './pages/googleMap/index';
-import Google from './pages/google';
+import {BrowserRouter as Router} from "react-router-dom";
+import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'materialize-css/dist/css/materialize.min.css'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Routers />
+        <Router>       
+                <App/>       
+      </Router>
   </React.StrictMode>,
   document.getElementById('root')
 );

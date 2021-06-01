@@ -10,11 +10,11 @@ const Profile = (props) => {
   const [profile, setProfile] = useState({});
 
   document.addEventListener("DOMContentLoaded", function () {
-    let elems = document.getElementsByClassName('datepicker');
-    elems.forEach((el)=>{
-      let instance = M.Datepicker.init(el,  {"format": "m/d/yyyy"});
+    let elems = document.getElementsByClassName("datepicker");
+    elems.forEach((el) => {
+      let instance = M.Datepicker.init(el, { format: "m/d/yyyy" });
       instance.toString();
-    })
+    });
   });
 
   const getInput = (field) => {
@@ -67,7 +67,7 @@ const Profile = (props) => {
                       value={user.userName}
                       placeholder="UserName"
                     />
-                    <label htmlFor="icon_prefix" ></label>
+                    <label htmlFor="icon_prefix"></label>
                   </div>
                 </div>
                 <div className="row">
@@ -77,8 +77,8 @@ const Profile = (props) => {
                       id="icon_telephone"
                       type="tel"
                       className="validate"
-                      onChange={getInput("telephone")}
-                      value={user.telephone}
+                      // onChange={getInput("telephone")}
+                      value={user.phone}
                       placeholder="Telephone"
                     />
                     <label htmlFor="icon_telephone"></label>
@@ -121,7 +121,7 @@ const Profile = (props) => {
                       value={user.password}
                       placeholder="password"
                     />
-                    <label htmlFor="password" ></label>
+                    <label htmlFor="password"></label>
                   </div>
                 </div>
               </div>

@@ -11,6 +11,14 @@ var firebaseConfig = {
   appId: "1:454798558612:web:97ef4e8ca7e72d26173b81",
 };
 
+// apiKey: "AIzaSyC7eHvHD9OXVIEUU1K_KyavzPfhdkhZYaM",
+// authDomain: "leaply-nest.firebaseapp.com",
+// projectId: "leaply-nest",
+// storageBucket: "leaply-nest.appspot.com",
+// messagingSenderId: "294575023785",
+// appId: "1:294575023785:web:a8cda7dfa764fa86a9abb8"
+
+
 firebase.initializeApp(firebaseConfig);
 
 export const firestore = firebase.firestore();

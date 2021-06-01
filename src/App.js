@@ -7,8 +7,7 @@ import Start from "./pages/start";
 import SignUp from "./pages/start/signUp.js";
 import SignIn from "./pages/start/signIn.js";
 import { useEffect, useState } from "react";
-import firebase,{auth, firestore} from './firebase/index';
-
+import firebase, { auth, firestore } from "./firebase/index";
 
 const App = () => {
   const [user, setUser] = useState({
@@ -19,83 +18,72 @@ const App = () => {
     photo: {},
     phone: {},
     birthday: {},
-    password: {}
-
+    password: {},
   });
 
+  console.log(user)
   const [isLogin, setIsLogin] = useState(false);
   const history = useHistory();
 
-  useEffect(()=>{
-    const unsubscribe =  firebase.auth().onAuthStateChanged( async (user)=>{
-      if(!user) {
-        setUser({})
-        setIsLogin(false)
-
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (user) => {
+      if (!user) {
+        setUser({});
+        setIsLogin(false);
       } else {
-          const dataRef = await firestore.collection("users").doc(`${user.uid}`).get();
+        const dataRef = await firestore
+          .collection("users")
+          .doc(`${user.uid}`)
+          .get();
 
-         if(!dataRef.exists){
+        if (!dataRef.exists) {
           setUser({
             uid: user.uid,
-            phone: user.phoneNumber
-          })
-          history.replace('/profile')
+            phone: user.phoneNumber,
+          });
+          history.replace("/profile");
+        } else {
+          setUser({
+            uid: user.uid,
+            phone: user.phoneNumber,
+            ...(dataRef.data() || {}),
+          });
+        }
 
-         } else {
-           setUser({
-             uid: user.uid,
-             phone: user.phoneNumber, 
-             ...(dataRef.data() || {}),            
-           })
-         }
-
-        setIsLogin(true)
-      } 
+        setIsLogin(true);
+      }
     });
 
-    return()=>{
-      unsubscribe()
-    }
-  },[history]);
+    return () => {
+      unsubscribe();
+    };
+  }, [history]);
 
   return (
-      <div className="App">
-        <Route path="/" exact>
-          <Start />
-        </Route>
-        <Route path="/signUp">
-          <SignUp />
-        </Route>
-        <Route path="/signIn">
-          <SignIn user={user} isLogin={isLogin} setIsLogin={setIsLogin}/>
-        </Route>
-        <Route path="/home">
-          {
-            isLogin &&  <Home user={user}/>
-          }
-          {
-            !isLogin &&  <Redirect  to="/" exact/>
-          }       
-        </Route>
-        <Route path="/profile">
-          {
-            isLogin &&   <Profile user={user} setUser={setUser}/>
-          }
-          {
-            !isLogin &&  <Redirect  to="/" exact/>
-          }    
-        </Route>
-        <Route path="/friends">
-          {
-            isLogin &&   <FriendRequest user={user}/>
-          }
-          {
-            !isLogin &&  <Redirect  to="/" exact/>
-          } 
-        </Route>
-      </div>
+    <div className="App">
+      <Route path="/" exact>      
+       <Start />
+      </Route>
+      <Route path="/signUp">
+        <SignUp />
+      </Route>
+      <Route path="/signIn">
+        <SignIn user={user} isLogin={isLogin} setIsLogin={setIsLogin} />
+      </Route>
+      <Route path="/home">
+        {isLogin && <Home user={user} />}
+        {!isLogin && <Redirect to="/" exact />}
+      </Route>
+      <Route path="/profile">
+        {isLogin && <Profile user={user} setUser={setUser} />}
+        {!isLogin && <Redirect to="/" exact />}
+      </Route>
+      <Route path="/friends">
+        {isLogin && <FriendRequest user={user} />}
+        {!isLogin && <Redirect to="/" exact />}
+      </Route>
+    </div>
   );
-}
+};
 
 export default App;

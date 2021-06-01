@@ -1,12 +1,11 @@
-import React, {useEffect} from "react";
+import React, { useEffect, useRef } from "react";
 import "./home.scss";
 import { useHistory } from "react-router-dom";
-import {auth} from '../../firebase/index.js';
-// import GoogleMapReact from 'google-map-react';
-import Google from '../google'
+import { auth } from "../../firebase/index.js";
+import Google from "../google";
 const Home = (props) => {
-  
   let history = useHistory();
+  let profileImgRef = useRef();
 
   const onClickUrl = (url) => {
     history.push(url);
@@ -18,7 +17,7 @@ const Home = (props) => {
 
   return (
     <div className="home-container">
-       <Google user={props.user}/>
+      <Google user={props.user} />
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"
@@ -26,14 +25,14 @@ const Home = (props) => {
         crossOrigin="anonymous"
       ></link>
       <div className="container">
-     
-         
         <button className="lenses-icon">
           <i className="fas fa-clone fa-3x"></i>
         </button>
-        <button className="footprints-icon" onClick={logout}><i className="fas fa-sign-out-alt fa-3x"></i></button>
-        <button className="person-location-icon">
-          <i className="far fa-dot-circle fa-3x"></i>
+        <button className="footprints-icon" onClick={logout}>
+          <i className="fas fa-sign-out-alt fa-3x"></i>
+        </button>
+        <button ref={profileImgRef} className="person-location-icon">
+          {/* <image className="pro-image"></image> */}
         </button>
         <button className="world-icon">
           <i className="fas fa-globe-americas fa-3x"></i>

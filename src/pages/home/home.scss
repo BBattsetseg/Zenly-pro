@@ -45,11 +45,11 @@ $pink: #fc49a2;
     }
 
     &.person-location-icon {
-      position: absolute;
-      top: 200px;
-      left: calc(50% - (60px / 2));
-      .far {
-        color: $primary-color;
+      
+      .pro-image {
+        background-image: url('../../assets/profilePics/pic1.jpg');
+        width: fit-content;
+        height: fit-content;
       }
     }
 
