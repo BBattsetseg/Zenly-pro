@@ -1,9 +1,11 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../context";
 import firebase, { firestore, auth } from "../../firebase/index";
 // import firebase, { firestore, auth } from "../../assets/profilePics/pic1";
 
-const Google = (props) => {
+const Google = () => {
+  const user = useContext(UserContext);
   const GOOGLE_API_KEY = "AIzaSyDD1bL9fKZ3r1YsNSBNd7kWwVyW3F4FkV4";
   const ulaanbaatar = { lat: 47.9190857, lng: 106.9162188 };
 
@@ -12,6 +14,7 @@ const Google = (props) => {
   const [markers, setMarkers] = useState([]);
   const trackingRef = useRef();
 
+  console.log(markers)
   useEffect(() => {
     const googleMapScript = document.createElement("script");
     googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`;
@@ -45,7 +48,7 @@ const Google = (props) => {
             map: mapRef.current,
             label: item.username,
 
-            title: "hello !",
+            title: "hello! "+ item.username ,
           })
       );
     }
@@ -56,11 +59,11 @@ const Google = (props) => {
 
     firestore
       .collection("tracking")
-      .doc(props.user.uid)
+      .doc(user.uid)
       .set({
         position: { lat: latitude, long: longitude },
         timeStamp: new Date(),
-        username: props.user.userName,
+        username: user.userName,
       });
   };
 

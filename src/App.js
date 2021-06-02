@@ -6,8 +6,9 @@ import { Redirect, Route, useHistory } from "react-router-dom";
 import Start from "./pages/start";
 import SignUp from "./pages/start/signUp.js";
 import SignIn from "./pages/start/signIn.js";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import firebase, { auth, firestore } from "./firebase/index";
+import {UserContext} from './context';
 
 const App = () => {
   const [user, setUser] = useState({
@@ -21,7 +22,6 @@ const App = () => {
     password: {},
   });
 
-  console.log(user)
   const [isLogin, setIsLogin] = useState(false);
   const history = useHistory();
 
@@ -61,27 +61,29 @@ const App = () => {
 
   return (
     <div className="App">
-      <Route path="/" exact>      
-       <Start />
-      </Route>
-      <Route path="/signUp">
-        <SignUp />
-      </Route>
-      <Route path="/signIn">
-        <SignIn user={user} isLogin={isLogin} setIsLogin={setIsLogin} />
-      </Route>
-      <Route path="/home">
-        {isLogin && <Home user={user} />}
-        {!isLogin && <Redirect to="/" exact />}
-      </Route>
-      <Route path="/profile">
-        {isLogin && <Profile user={user} setUser={setUser} />}
-        {!isLogin && <Redirect to="/" exact />}
-      </Route>
-      <Route path="/friends">
-        {isLogin && <FriendRequest user={user} />}
-        {!isLogin && <Redirect to="/" exact />}
-      </Route>
+      <UserContext.Provider value={user}>
+        <Route path="/" exact>      
+        <Start />
+        </Route>
+        <Route path="/signUp">
+          <SignUp />
+        </Route>
+        <Route path="/signIn">
+          <SignIn  isLogin={isLogin} />
+        </Route>
+        <Route path="/home">
+          {isLogin && <Home />}
+          {!isLogin && <Redirect to="/" exact />}
+        </Route>
+        <Route path="/profile">
+          {isLogin && <Profile />}
+          {!isLogin && <Redirect to="/" exact />}
+        </Route>
+        <Route path="/friends">
+          {isLogin && <FriendRequest />}
+          {!isLogin && <Redirect to="/" exact />}
+        </Route>
+      </UserContext.Provider>
     </div>
   );
 };

@@ -1,21 +1,24 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
 import "./profile.scss";
 import M from "materialize-css/dist/js/materialize";
 import firebase, { firestore, auth } from "../../firebase/index.js";
 import { useHistory } from "react-router";
+import { UserContext } from "../../context";
 
-const Profile = (props) => {
-  let user = props.user;
+const Profile = () => {
+  let user = useContext(UserContext);
   const history = useHistory();
   const [profile, setProfile] = useState({});
 
-  document.addEventListener("DOMContentLoaded", function () {
-    let elems = document.getElementsByClassName("datepicker");
-    elems.forEach((el) => {
-      let instance = M.Datepicker.init(el, { format: "m/d/yyyy" });
-      instance.toString();
-    });
-  });
+
+
+  // document.addEventListener("DOMContentLoaded", function () {
+  //   let elems = document.getElementsByClassName("datepicker");
+  //   elems.forEach((el) => {
+  //     let instance = M.Datepicker.init(el, { format: "m/d/yyyy" });
+  //     instance.toString();
+  //   });
+  // });
 
   const getInput = (field) => {
     return (e) => {
@@ -30,6 +33,7 @@ const Profile = (props) => {
     history.push(url);
   };
 
+ 
   const onSubmit = (e) => {
     e.preventDefault();
     var userRef = firestore.collection("users");
@@ -77,7 +81,7 @@ const Profile = (props) => {
                       id="icon_telephone"
                       type="tel"
                       className="validate"
-                      // onChange={getInput("telephone")}
+                      onChange={getInput("telephone")}
                       value={user.phone}
                       placeholder="Telephone"
                     />

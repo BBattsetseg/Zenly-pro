@@ -1,7 +1,8 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useRef, useState } from "react";
 import firebase, { auth } from "../../firebase";
 import "./start.scss";
 import { Redirect, useHistory } from "react-router-dom";
+import {UserContext} from '../../context';
 
 const SignIn = (props) => {
   const [input, setInput] = useState("");
@@ -14,11 +15,11 @@ const SignIn = (props) => {
   const confirmationResult = useRef();
   const recaptchaVerifier = useRef(); //recaptcha
 
-  let user = props.user;
+  let user = useContext(UserContext);
   let isLogin = props.isLogin;
 
-  if(isLogin){
-    history.push('/home');
+  if(isLogin ){
+    history.push('/profile');
   }
 
   useEffect(() => {

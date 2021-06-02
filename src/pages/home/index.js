@@ -3,7 +3,7 @@ import "./home.scss";
 import { useHistory } from "react-router-dom";
 import { auth } from "../../firebase/index.js";
 import Google from "../google";
-const Home = (props) => {
+const Home = () => {
   let history = useHistory();
   let profileImgRef = useRef();
 
@@ -17,7 +17,7 @@ const Home = (props) => {
 
   return (
     <div className="home-container">
-      <Google user={props.user} />
+      <Google />
       <link
         rel="stylesheet"
         href="https://use.fontawesome.com/releases/v5.15.3/css/all.css"

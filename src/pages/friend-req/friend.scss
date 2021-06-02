@@ -66,3 +66,21 @@ $pink: #fc49a2;
     }
   }
 }
+
+.p-50{
+  padding-top: 50px ;
+}
+
+.list-container {
+  max-height: 500px !important;
+  overflow:scroll !important;
+  scrollbar-color: $secondary-color;
+}
+
+.fa-times-circle{
+  color: grey;
+  &:hover{
+    transform: scale(1.5);
+    color: #fff;
+  }
+}
