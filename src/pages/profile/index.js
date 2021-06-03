@@ -10,8 +10,6 @@ const Profile = () => {
   const history = useHistory();
   const [profile, setProfile] = useState({});
 
-
-
   // document.addEventListener("DOMContentLoaded", function () {
   //   let elems = document.getElementsByClassName("datepicker");
   //   elems.forEach((el) => {
@@ -67,9 +65,9 @@ const Profile = () => {
                       id="icon_prefix"
                       type="text"
                       className="validate"
-                      onChange={getInput("userName")}
-                      value={user.userName}
-                      placeholder="UserName"
+                      onChange={getInput("username")}
+                      value={user.username}
+                      placeholder="Username"
                     />
                     <label htmlFor="icon_prefix"></label>
                   </div>

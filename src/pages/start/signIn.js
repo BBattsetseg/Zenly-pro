@@ -20,6 +20,7 @@ const SignIn = (props) => {
 
   if(isLogin ){
     history.push('/profile');
+    
   }
 
   useEffect(() => {

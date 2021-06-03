@@ -12,7 +12,7 @@ import {UserContext} from './context';
 
 const App = () => {
   const [user, setUser] = useState({
-    userName: {},
+    username: {},
     id: {},
     hidden: {},
     email: {},

@@ -1,81 +1,102 @@
 import React, { useRef, useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../../context";
-import firebase, { firestore, auth } from "../../firebase/index";
-// import firebase, { firestore, auth } from "../../assets/profilePics/pic1";
+import { firestore} from "../../firebase/index";
 
 const Google = () => {
-  const user = useContext(UserContext);
-  const GOOGLE_API_KEY = "AIzaSyDD1bL9fKZ3r1YsNSBNd7kWwVyW3F4FkV4";
-  const ulaanbaatar = { lat: 47.9190857, lng: 106.9162188 };
+    const user = useContext(UserContext);
+    const GOOGLE_API_KEY = "AIzaSyDD1bL9fKZ3r1YsNSBNd7kWwVyW3F4FkV4";
+    const ulaanbaatar = { lat: 47.9190857, lng: 106.9162188 };
 
-  const mapElementRef = useRef();
-  const mapRef = useRef(null);
-  const [markers, setMarkers] = useState([]);
-  const trackingRef = useRef();
+    const mapElementRef = useRef();
+    const mapRef = useRef(null);
+    const [markers, setMarkers] = useState([]);
+    const trackingRef = useRef();
 
-  console.log(markers)
-  useEffect(() => {
-    const googleMapScript = document.createElement("script");
-    googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`;
-    googleMapScript.async = true;
-    window.document.body.appendChild(googleMapScript);
-    googleMapScript.addEventListener("load", onGoogleMapLoad);
-    trackMyLocation();
-  }, []);
+    // console.log(markers)
+    useEffect(() => {
+      const googleMapScript = document.createElement("script");
+      googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`;
+      googleMapScript.async = true;
+      window.document.body.appendChild(googleMapScript);
 
-  const onGoogleMapLoad = () => {
-    mapRef.current = new window.google.maps.Map(mapElementRef.current, {
-      center: ulaanbaatar,
-      zoom: 12,
-    });
+      googleMapScript.addEventListener("load", onGoogleMapLoad); //init map
+      trackMyLocation();
+    }, []);
 
-    firestore.collection("tracking").onSnapshot((querySnapshot) => {
-      const markerList = [];
-      querySnapshot.forEach((doc) => {
-        markerList.push(doc.data());
+    const onGoogleMapLoad = () => {
+      mapRef.current = new window.google.maps.Map(mapElementRef.current, {
+        center: ulaanbaatar,
+        zoom: 12,
       });
-      setMarkers(markerList);
-    });
-  };
 
-  useEffect(() => {
-    if (mapRef.current) {
-      markers.forEach(
-        (item) =>
-          new window.google.maps.Marker({
-            position: { lat: item.position.lat, lng: item.position.long },
-            map: mapRef.current,
-            label: item.username,
+      firestore.collection("tracking").onSnapshot((querySnapshot) => {
+        const markerList = [];
+        querySnapshot.forEach((doc) => {
+          markerList.push(doc.data());
+        });
+        setMarkers(markerList);
+      });
+    };
 
-            title: "hello! "+ item.username ,
-          })
+    useEffect(() => {
+      const markerslist=[];
+      if (mapRef.current) {
+        markers.forEach(
+          (item) =>
+         {  let m = new window.google.maps.Marker({
+              position: { lat: item.position.lat, lng: item.position.lng },
+              map: mapRef.current,
+              label: item.username,
+              title: "hello! "+ item.username 
+            })
+            markerslist.push(m)}
+        );
+      }
+
+      return ()=>{
+        markerslist.forEach((item)=>{
+          item.setMap(null)
+        })
+      }
+    }, [markers]);
+
+
+  //   useEffect(() => {
+  //     const beforeUnloadListener = (event) => {
+  //       firestore.collection("tracking")
+  //       .doc(user.uid).delete();
+  //     }
+
+  //     window.addEventListener("beforeunload", beforeUnloadListener, {capture: true});
+
+  //     return () => {
+  //         window.removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
+  //     }
+  // }, [])
+
+    const sendMyLocation = (position) => {
+      const { latitude, longitude } = position.coords;
+
+      firestore
+        .collection("tracking")
+        .doc(user.uid)
+        .set({
+          position: { lat: latitude, lng: longitude },
+          timeStamp: new Date(),
+          username: user.username,
+        });
+    };
+
+    const trackMyLocation = async () => {
+      trackingRef.current = navigator.geolocation.watchPosition(
+        sendMyLocation,
+        console.error,
+        { maximumAge: 30000 }
       );
-    }
-  }, [markers]);
+    };
 
-  const sendMyLocation = (position) => {
-    const { latitude, longitude } = position.coords;
-
-    firestore
-      .collection("tracking")
-      .doc(user.uid)
-      .set({
-        position: { lat: latitude, long: longitude },
-        timeStamp: new Date(),
-        username: user.userName,
-      });
-  };
-
-  const trackMyLocation = async () => {
-    trackingRef.current = navigator.geolocation.watchPosition(
-      sendMyLocation,
-      console.error,
-      { maximumAge: 30000 }
-    );
-  };
-
-  return <div ref={mapElementRef} className="home-container "></div>;
+    return <div ref={mapElementRef} className="home-container "></div>;
 };
 
 export default Google;

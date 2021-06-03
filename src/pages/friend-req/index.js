@@ -3,33 +3,37 @@ import AddFriendList from "./add-friend-list";
 import "./friend.scss";
 
 const FriendRequest = () => {
-  const [isAddFriendLstOpen, setIsAddFriendLstOpen] = useState(false);
+    const [isAddFriendLstOpen, setIsAddFriendLstOpen] = useState(false);
 
-  const onAddFriend = () => {
-    console.log("add friend");
-    if (!isAddFriendLstOpen) {
-      setIsAddFriendLstOpen(true);
-    } else {
-      setIsAddFriendLstOpen(false);
-    }
-  };
 
-  const Friend = () => {
-    return (
-      <li className="collection-item avatar">
-        <img
-          src="https://images.unsplash.com/photo-1621293051751-6514b7f9515d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2076&q=80"
-          alt=""
-          className="circle"
-        />
-        <span className="title">Title</span>
-        <p>First Line</p>
-        <a href="#!" className="secondary-content">
-          <i className="fas fa-check-circle fa-2x "></i>
-        </a>
-      </li>
-    );
-  };
+    // add friend list suggest
+    const onAddFriend = () => {
+      console.log("add friend");
+      if (!isAddFriendLstOpen) {
+        setIsAddFriendLstOpen(true);
+      } else {
+        setIsAddFriendLstOpen(false);
+      }
+    };
+
+
+    // friends
+    const Friend = () => {
+      return (
+        <li className="collection-item avatar">
+          <img
+            src="https://images.unsplash.com/photo-1621293051751-6514b7f9515d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2076&q=80"
+            alt=""
+            className="circle"
+          />
+          <span className="title">Title</span>
+          <p>First Line</p>
+          <a href="#!" className="secondary-content">
+            <i className="fas fa-check-circle fa-2x "></i>
+          </a>
+        </li>
+      );
+    };
 
   return (
     <div className="f-container">
