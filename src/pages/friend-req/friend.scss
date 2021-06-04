@@ -84,3 +84,9 @@ $pink: #fc49a2;
     color: #fff;
   }
 }
+
+.fa-user-plus{
+  &:hover {
+    color: $pink;
+  }
+}

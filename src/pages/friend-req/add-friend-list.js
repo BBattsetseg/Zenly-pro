@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { firestore } from "../../firebase";
 import "./friend.scss";
 
 const AddFriendList = (props) =>{
@@ -6,7 +7,24 @@ const AddFriendList = (props) =>{
        console.log(props.setIsAddFriendLstOpen())
      }
 
-     const AddFriend=()=>{
+     const [onaddFriendList, setonAddFriendList] = useState([]);
+
+     useEffect(()=>{
+       firestore.collection("tracking").onSnapshot((querySnapshot) => {
+         const adds = [];
+        querySnapshot.forEach((doc) => {
+          adds.push(doc.data());
+        });
+        setonAddFriendList(adds);
+      });
+     },[])
+
+    const onFriend = () =>{
+      
+    }
+
+     const AddFriend=(props)=>{
+      console.log(props) 
          return(
             <li className="collection-item avatar">
             <img
@@ -14,10 +32,10 @@ const AddFriendList = (props) =>{
             alt=""
             className="circle"
             />
-            <span className="title">Title</span>
+            <span className="title">{props.username}</span>
             <p>First Line</p>
             <a href="#!" className="secondary-content">
-            <i className="fas fa-user-plus fa-2x "></i>
+            <i className="fas fa-user-plus fa-2x " onClick={()=>{onFriend()}}></i>
             </a>
         </li> 
          )
@@ -31,15 +49,11 @@ const AddFriendList = (props) =>{
             crossOrigin="anonymous"
           ></link>
             <h4>YOU MAY KNOW</h4>
-            <ul className="collection container list-container ">             
-               <AddFriend/>
-               <AddFriend/>
-               <AddFriend/>           
-               <AddFriend/>
-               <AddFriend/>           
-               <AddFriend/>
-               <AddFriend/>           
-                       
+            <ul className="collection container list-container ">            
+            {
+              onaddFriendList.map((list)=> <AddFriend username = {list.username} /> )
+            } 
+                                 
             </ul>
             <i class="far fa-times-circle  fa-2x p-50" onClick={()=>{closeFriendList()}}></i>
         </div>
@@ -48,3 +62,7 @@ const AddFriendList = (props) =>{
 }
 
 export default AddFriendList
+
+
+
+//yarn build

@@ -13,7 +13,6 @@ const Google = () => {
     const [markers, setMarkers] = useState([]);
     const trackingRef = useRef();
 
-    // console.log(markers)
     useEffect(() => {
       const googleMapScript = document.createElement("script");
       googleMapScript.src = `https://maps.googleapis.com/maps/api/js?key=${GOOGLE_API_KEY}&libraries=places`;
@@ -48,7 +47,14 @@ const Google = () => {
               position: { lat: item.position.lat, lng: item.position.lng },
               map: mapRef.current,
               label: item.username,
-              title: "hello! "+ item.username 
+              title: "hello! "+ item.username,
+              icon :{
+                url: item.img,
+                scaledSize: {
+                  width:50,
+                  height:50,
+                }
+              }
             })
             markerslist.push(m)}
         );
@@ -61,20 +67,6 @@ const Google = () => {
       }
     }, [markers]);
 
-
-  //   useEffect(() => {
-  //     const beforeUnloadListener = (event) => {
-  //       firestore.collection("tracking")
-  //       .doc(user.uid).delete();
-  //     }
-
-  //     window.addEventListener("beforeunload", beforeUnloadListener, {capture: true});
-
-  //     return () => {
-  //         window.removeEventListener("beforeunload", beforeUnloadListener, {capture: true});
-  //     }
-  // }, [])
-
     const sendMyLocation = (position) => {
       const { latitude, longitude } = position.coords;
 
@@ -85,6 +77,7 @@ const Google = () => {
           position: { lat: latitude, lng: longitude },
           timeStamp: new Date(),
           username: user.username,
+          img:'https://images.unsplash.com/photo-1621293051751-6514b7f9515d?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2076&q=80'
         });
     };
 
