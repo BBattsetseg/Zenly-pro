@@ -51,7 +51,7 @@ const AddFriendList = (props) =>{
             <h4>YOU MAY KNOW</h4>
             <ul className="collection container list-container ">            
             {
-              onaddFriendList.map((list)=> <AddFriend username = {list.username} /> )
+              onaddFriendList.map((list)=> <AddFriend username = {list.username} buil/> )
             } 
                                  
             </ul>
