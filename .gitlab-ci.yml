@@ -1,0 +1,28 @@
+image: node:14.17.0-alpine
+
+stages: 
+  - build
+  - deploy
+
+build:
+  stage: build
+  script:
+    - npm install
+    - npm run build
+    
+  artifacts:
+    paths:
+      - build
+
+ deploy:
+  stage: deploy
+  script:
+      - yarn global add firebase-tools 
+      - firebase use --token $FIREBASE_TOKEN
+      - firebase deploy --token $FIREBASE_TOKEN
+
+  only: master
+
+
+# 1//0epAhLu0NJV2XCgYIARAAGA4SNwF-L9IrzG7UOtgyGzBu50vSmIV-dZGiNHEmgW7QTSdYnfKAymfo_iC0c9l_ZrUX5pPSO2US3pY
+# hub.docker.com  --version songon node-iin

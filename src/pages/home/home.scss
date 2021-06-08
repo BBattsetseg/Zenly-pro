@@ -1,0 +1,88 @@
+$primary-color: #38cbff;
+$secondary-color: #32325c;
+$pink: #fc49a2;
+
+.home-container {
+  height: 100vh;
+  width: 100%;
+  background-color: #ccc;
+  position: relative !important;
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    color: $secondary-color !important;
+  }
+
+  .country {
+    text-align: center;
+    padding: 0 !important;
+    padding-top: 30px !important;
+    margin: 0 !important;
+    &.h1 {
+      color: $secondary-color !important;
+    }
+  }
+  button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #fff;
+    border: none;
+
+    &.lenses-icon {
+      position: absolute;
+      top: 30px;
+      left: 30px;
+    }
+
+    &.footprints-icon {
+      position: absolute;
+      top: 30px;
+      right: 30px;
+    }
+
+    &.person-location-icon {
+      
+      .pro-image {
+        background-image: url('../../assets/profilePics/pic1.jpg');
+        width: fit-content;
+        height: fit-content;
+      }
+    }
+
+    &.world-icon {
+      position: absolute;
+      bottom: 130px;
+      left: calc(50% - (60px / 2));
+    }
+
+    &.message-icon {
+      position: absolute;
+      bottom: 30px;
+      left: 30px;
+    }
+
+    &.add-friend-icon {
+      position: absolute;
+      bottom: 30px;
+      left: calc(50% - (60px / 2));
+      .fas {
+        color: $pink;
+      }
+    }
+
+    &.profile-icon {
+      position: absolute;
+      bottom: 30px;
+      right: 30px;
+    }
+  }
+}
+
+.fas,
+.far {
+  color: $secondary-color;
+}
